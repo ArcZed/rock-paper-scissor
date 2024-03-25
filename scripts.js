@@ -51,7 +51,6 @@ function playGame(){
             console.log(playRound(playerSelection, computerSelection));
     }
             if(round == 5){
-                console.log(round);
                 gameOver = true;
                 if(playerScore > computerScore){
                     console.log('You Win The Game!')
