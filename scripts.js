@@ -1,6 +1,32 @@
 let playerScore = 0;
 let computerScore = 0;
-// create function generating the computer's choice
+let isGameOver = false;
+
+const resultScreen = document.querySelector('.resultScreen');
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const icon = document.querySelector('.icon');
+
+// Get player choice
+
+rock.addEventListener('click', (e)=>{
+    console.log(e.target.alt);
+    playRound(e.target.alt, getComputerChoice())
+    checkScore();
+});
+paper.addEventListener('click', (e)=>{
+    console.log(e.target.alt);
+    playRound(e.target.alt, getComputerChoice())
+    checkScore();
+});
+scissors.addEventListener('click',(e)=>{
+    console.log(e.target.alt);
+    playRound(e.target.alt, getComputerChoice())
+    checkScore();
+});
+
+// Generate computer's choice
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3) + 1;
     switch (choice){
@@ -14,50 +40,39 @@ function getComputerChoice(){
         break;
     }
 }
-//create function that play one round of RPS
-// 3 case: win; lose; tie
+
+//Play one round of RPS
 function playRound(playerOption, computerChoice){
-    //invalid choice
-    const playerChoice = playerOption.toLowerCase();
-    if(playerChoice != 'rock' && 
-        playerChoice != 'paper' && 
-        playerChoice != 'scissor'){
-        return `${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} is not a valid choice!`
-    }
+
+    let playerChoice = playerOption.toLowerCase();
+    if(!isGameOver){
     //win
     if((playerChoice == 'rock' && computerChoice == 'Scissor') || 
-        (playerChoice == 'paper' && computerChoice == 'Rock') || 
-        (playerChoice == 'scissor' && computerChoice == 'Paper')){
-        playerScore++
-        return `You win! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}`
+       (playerChoice == 'paper' && computerChoice == 'Rock') || 
+       (playerChoice == 'scissor' && computerChoice == 'Paper')){
+        playerScore++;
+        resultScreen.textContent = `You Win! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}`
     }
     //tie
     else if (playerChoice == computerChoice.toLowerCase()){
-        return `You Tied! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} ties ${computerChoice}`
+        resultScreen.textContent = `You Tied! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} ties ${computerChoice}`
     }
     //lose
     else {
         computerScore++
-        return `You Lose! ${computerChoice} beats ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`}
+        resultScreen.textContent = `You Lose! ${computerChoice} beats ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`}
 }
-//create playGame() function to play 5 round of RPS to keep score and alert winner
-function playGame(){
-    let gameOver = false;
-
-    for(let round = 1; round <= 5; round++){
-        if(!gameOver){
-            let playerSelection = prompt('Rocks Papers Scissors');
-            const computerSelection = getComputerChoice();
-            console.log(playRound(playerSelection, computerSelection));
+    else{
+        gameOver();
     }
-            if(round == 5){
-                gameOver = true;
-                if(playerScore > computerScore){
-                    console.log('You Win The Game!')
-                }
-                else if(playerScore == computerScore){console.log('You tied!')}
-                else {console.log('You Lost! :(')}
-            }
 }
+// Check the score
+function checkScore(){
+    if(!gameOver && playerScore < 5 && computerScore < 5){
+        
+    }
 }
-document.addEventListener('DOMContentLoaded', playGame())
+
+function gameOver(){
+
+}

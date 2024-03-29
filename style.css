@@ -1,0 +1,46 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+body{
+    background-color: rgb(245, 245, 220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.resultScreen{
+    width: 70vh;
+    height: 40vh;
+    border: 5px solid bisque;
+    border-radius: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vh;
+    color: rgb(131, 131, 76);
+}
+
+.icon-container{
+    display: flex;
+    gap: 2vh;
+    margin: 30px;
+}
+
+.icon{
+    width: 20vh;
+    height: 20vh;
+    border: 5px solid bisque;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 80%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
